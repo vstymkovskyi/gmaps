@@ -1,0 +1,39 @@
+{
+	"name": "Gmaps",
+	"title": "Gmaps",
+	"description": "It's a test task.",
+	"url": "",
+	"author": "Vitalii Stymkovskyi",
+	"copyright": "2016",
+	"version": "0.1.0",
+	"license": "",
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"devDependencies": {
+		"bower": "^1.7.7",
+		"connect-livereload": "^0.5.4",
+		"grunt": "^0.4.5",
+		"grunt-autoprefixer": "^3.0.4",
+		"grunt-bower": "^0.21.0",
+		"grunt-contrib-clean": "^1.0.0",
+		"grunt-contrib-concat": "^1.0.0",
+		"grunt-contrib-connect": "^1.0.0",
+		"grunt-contrib-cssmin": "^1.0.0",
+		"grunt-contrib-jshint": "^1.0.0",
+		"grunt-contrib-sass": "^1.0.0",
+		"grunt-contrib-uglify": "^1.0.0",
+		"grunt-contrib-watch": "^0.6.1",
+		"grunt-open": "^0.2.3",
+		"load-grunt-tasks": "~3.4.1",
+		"serve-static": "^1.10.2",
+		"matchdep": "~0.1.2"
+	},
+	"scripts": {
+		"postinstall": "node_modules/.bin/bower install && bower install angular-latest --production"
+	},
+	"dependencies": {
+
+	}
+}

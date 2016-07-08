@@ -10,20 +10,15 @@ var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({
 	port: LIVERELOAD_PORT
 });
+
 var mountFolder = function (connect, dir) {
 	return require('serve-static')(require('path').resolve(dir));
-	//return connect.static(require('path').resolve(dir));
 };
 
 /**
  * Grunt module
  */
 module.exports = function (grunt) {
-	///**
-	// * Dynamically load npm tasks
-	// */
-	//require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
 	/**
 	 * Dynamically load npm tasks
 	 */
@@ -47,7 +42,6 @@ module.exports = function (grunt) {
 			js: [
 				'<%= project.src %>/js/**/*.js'
 			]
-
 		},
 
 		/**

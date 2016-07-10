@@ -3,15 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Gmaps</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/bootstrapImport.min.css" />
+	<link rel="stylesheet" href="assets/css/angular-material.min.css" />
+	<link rel="stylesheet" href="assets/css/style.min.css" />
+</head>
+<body ng-controller="AppCtrl">
+
+	<div id="wrapper" class="wrapper">
+		<div id="sidebar-wrapper" ui-view="sidebar" class="sidebar-wrapper col-md-3"></div>
+		<div id="page-content-wrapper" ui-view="master" class="page-content-wrapper col-md-9"><!--Angular app goes here  --></div>
+	</div>
+	<footer></footer>
 
 	<script type="text/javascript" src="assets/components/jquery.js"></script>
+	<script type="text/javascript" src="assets/components/dist/js/bootstrap.js"></script>
 	<script type="text/javascript" src="assets/components/angular.js"></script>
 	<script type="text/javascript" src="assets/components/release/angular-ui-router.js"></script>
+	<script type="text/javascript" src="assets/components/angular-aria.js"></script>
+	<script type="text/javascript" src="assets/components/angular-animate.js"></script>
+	<script type="text/javascript" src="assets/components/angular-material.js"></script>
+	<script type="text/javascript" src="assets/components/angular-messages.js"></script>
 	<script type="text/javascript" src="assets/components/ui-bootstrap-tpls.js"></script>
 	<script type="text/javascript" src="assets/components/checklist-model.js"></script>
+	<script type="text/javascript" src="assets/components/require.js"></script>
+	<script type="text/javascript" defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqs9arQg_iv90JNfinME0HJnd-BJwKqNI&sensor=false"></script>
 	<script type="text/javascript" src="assets/js/scripts.min.js"></script>
-</head>
-<body>
-	Gmaps test
 </body>
 </html>

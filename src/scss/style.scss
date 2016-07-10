@@ -1,0 +1,41 @@
+/* Toggle Styles */
+
+.wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  height: 100%;
+
+  /* Sidebar Styles */
+  .sidebar-wrapper {
+    height: 100%;
+    border-right: 5px solid #c2ccd1;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    md-list-item {
+      &:hover {
+        background: #c2ccd1;
+      }
+    }
+    .md-button.md-fab.md-mini {
+      line-height: 13px;
+      height: 35px;
+      width: 35px;
+    }
+    .no-padding {
+      padding: 0!important;
+    }
+  }
+
+
+  .page-content-wrapper {
+    .locationsMap {
+      height: 500px;
+      width: 100%;
+    }
+  }
+}

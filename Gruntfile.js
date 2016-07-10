@@ -36,9 +36,7 @@ module.exports = function (grunt) {
 			src: 'src',
 			app: 'app',
 			assets: '<%= project.app %>/assets',
-			css: [
-				'<%= project.src %>/scss/style.scss'
-			],
+			css: ['<%= project.src %>/scss'],
 			js: [
 				'<%= project.src %>/js/**/*.js'
 			]
@@ -120,17 +118,6 @@ module.exports = function (grunt) {
 				files: {
 					'<%= project.assets %>/js/scripts.min.js': '<%= project.js %>'
 				}
-				// files: [{
-				//     src: '<%= project.assets %>/js/**/*',
-				//     ext: '.js',
-				//     flatten: true,
-				//     expand: true
-				//   }]
-
-				// files : {
-				//   src : '/js/**/*.js',
-				//   dest : '<%= project.assets %>/js/scripts.min.js'
-				// }
 			}
 		},
 
@@ -145,30 +132,9 @@ module.exports = function (grunt) {
 					style: 'expanded'
 				},
 				files: {
-					'<%= project.assets %>/css/style.unprefixed.css': '<%= project.css %>'
-				}
-			}
-		},
-
-		/**
-		 * Autoprefixer
-		 * Adds vendor prefixes automatically
-		 * https://github.com/nDmitry/grunt-autoprefixer
-		 */
-		autoprefixer: {
-			options: {
-				browsers: [
-					'last 2 version',
-					'safari 6',
-					'ie 9',
-					'opera 12.1',
-					'ios 6',
-					'android 4'
-				]
-			},
-			dev: {
-				files: {
-					'<%= project.assets %>/css/style.min.css': ['<%= project.assets %>/css/style.unprefixed.css']
+					'<%= project.assets %>/css/angular-material.css': '<%= project.src %>/components/angular-material/angular-material.scss',
+					'<%= project.assets %>/css/bootstrapImport.css': '<%= project.css %>/bootstrapImport.scss',
+					'<%= project.assets %>/css/style.css': '<%= project.css %>/style.scss'
 				}
 			}
 		},
@@ -179,13 +145,17 @@ module.exports = function (grunt) {
 		 * https://github.com/gruntjs/grunt-contrib-cssmin
 		 */
 		cssmin: {
+			compile: {
+				files: {
+					'<%= project.assets %>/css/angular-material.min.css': '<%= project.assets %>/css/angular-material.css',
+					'<%= project.assets %>/css/bootstrapImport.min.css': '<%= project.assets %>/css/bootstrapImport.css'
+				}
+			},
 			dev: {
-				options: {
-				},
 				files: {
 					'<%= project.assets %>/css/style.min.css': [
 						'<%= project.src %>/components/normalize-css/normalize.css',
-						'<%= project.assets %>/css/style.unprefixed.css'
+						'<%= project.assets %>/css/style.css'
 					]
 				}
 			}
@@ -197,6 +167,9 @@ module.exports = function (grunt) {
 		 */
 		bower: {
 			dev: {
+				options: {
+					layout: 'byComponent'
+				},
 				dest: '<%= project.assets %>/components/'
 			}
 		},
@@ -222,12 +195,12 @@ module.exports = function (grunt) {
 				files: [
 					'<%= project.src %>/js/{,*/}*.js'
 				],
-				// tasks: ['concat:dev', 'jshint']
+//				tasks: ['concat:dev', 'jshint']
 				tasks: ['concat:dev']
 			},
 			sass: {
 				files: '<%= project.src %>/scss/{,*/}*.{scss,sass}',
-				tasks: ['sass:dev', 'cssmin:dev', 'autoprefixer:dev']
+				tasks: ['sass:dev', 'cssmin:dev']
 			},
 			livereload: {
 				options: {
@@ -235,6 +208,7 @@ module.exports = function (grunt) {
 				},
 				files: [
 					'<%= project.app %>/{,*/}*.html',
+					'<%= project.assets %>/templates/{,*/}*.html',
 					'<%= project.assets %>/css/*.css',
 					'<%= project.assets %>/js/{,*/}*.js',
 					'<%= project.assets %>/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
@@ -250,9 +224,9 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', [
 		'sass:dev',
 		'bower:dev',
-		'autoprefixer:dev',
+		'cssmin:compile',
 		'cssmin:dev',
-		// 'jshint',
+//		'jshint',
 		'concat:dev',
 		'connect:livereload',
 		'open',

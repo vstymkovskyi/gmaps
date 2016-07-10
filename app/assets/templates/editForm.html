@@ -1,0 +1,71 @@
+<md-dialog aria-label="Edit location" ng-cloak ng-controller="listCtrl">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Edit location</h2>
+			<span flex="" class="flex"></span>
+			<md-button class="md-icon-button pull-right" ng-click="DialogCtrl.parent.hideDialog()">
+				<md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="md-dialog-content">
+		<form name="addPlaceForm" class="css-form">
+			<md-input-container class="md-block" flex-gt-sm>
+				<label for="place-name">Name</label>
+				<input id="place-name" type="text" ng-model="DialogCtrl.parent.place.name" name="placeName" required />
+				<div ng-messages="addPlaceForm.placeName.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+					<label for="place-lat">Coordinates lat</label>
+					<input id="place-lat" type="text"
+					       ng-model="DialogCtrl.parent.place.lat"
+					       name="placeLat"
+					       required
+					       ng-change="DialogCtrl.parent.selectedCoordinates()" />
+					<div ng-messages="addPlaceForm.placeLat.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm>
+					<label for="place-lng">Coordinates lng</label>
+					<input id="place-lng"
+					       type="text"
+					       ng-model="DialogCtrl.parent.place.lng"
+					       name="placeLng"
+					       required
+					       ng-change="DialogCtrl.parent.selectedCoordinates()" />
+					<div ng-messages="addPlaceForm.placeLng.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+			</div>
+			<md-autocomplete flex id="placeAddress"
+			                 md-input-name="placeAddress"
+			                 md-input-minlength="3"
+			                 md-selected-item-change="DialogCtrl.parent.selectedAddress(item)"
+			                 md-search-text="DialogCtrl.parent.place.address"
+			                 md-items="item in DialogCtrl.parent.geocodeAddress(DialogCtrl.parent.place.address)"
+			                 md-item-text="item.formatted_address"
+			                 md-floating-label="Address">
+				<md-item-template>
+					<span md-highlight-text="DialogCtrl.parent.place.address" md-highlight-flags="^i">{{item.formatted_address}}</span>
+				</md-item-template>
+				<md-not-found>No states matching were found.</md-not-found>
+				<div ng-messages="addPlaceForm.placeAddress.$error" ng-if="addPlaceForm.placeAddress.$touched">
+					<div ng-message="required">You <b>must</b> enter address.</div>
+					<div ng-message="minlength">Your entry is not long enough.</div>
+					<div ng-message="maxlength">Your entry is too long.</div>
+				</div>
+			</md-autocomplete>
+			<div class="form-submit">
+				<md-button class="md-raised"
+				           ng-click="DialogCtrl.parent.updatePlace(DialogCtrl.index, DialogCtrl.parent.place)"
+				           ng-disabled="addPlaceForm.$invalid">Edit</md-button>
+				<md-button class="md-raised" ng-click="DialogCtrl.parent.hideDialog()">Cancel</md-button>
+			</div>
+		</form>
+	</div>
+</md-dialog>

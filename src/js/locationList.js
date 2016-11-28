@@ -75,7 +75,7 @@ var locationList = angular.module('locationList', ['ngMaterial', 'ngMessages', '
 				if (status === google.maps.GeocoderStatus.OK) {
 					deferred.resolve( results );
 				} else {
-					console.log(status);
+					// console.log(status);
 					deferred.resolve([]);
 				}
 			});

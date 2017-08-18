@@ -4,6 +4,7 @@
 * to run project run command grunt
 
 #Description
+
 Single-page по управлению локациями.
 
 Для работы с локациямии исполозовался Google Maps Javascript API, https://developers.google.com/maps/documentation/javascript/.

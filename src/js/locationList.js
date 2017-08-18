@@ -21,8 +21,8 @@ var locationList = angular.module('locationList', ['ngMaterial', 'ngMessages', '
 				zoom:   STARTZOOM
 			};
 			var mapContent = document.getElementById('locationsMap');
-			if(mapContent != null) {
-				if($scope.waitForMap != undefined)
+			if(mapContent !== null) {
+				if($scope.waitForMap !== undefined)
 					clearTimeout($scope.waitForMap);
 
 				$scope.map = new google.maps.Map(mapContent, mapOptions);
@@ -34,10 +34,10 @@ var locationList = angular.module('locationList', ['ngMaterial', 'ngMessages', '
 			}
 		};
 
-		if($scope.locationsArray == undefined) {
+		if($scope.locationsArray === undefined) {
 			var jsonArray = LocalService.get('locationsList');
 			$scope.locationsArray = angular.fromJson(jsonArray);
-			if($scope.locationsArray == null) {
+			if(!$scope.locationsArray.length) {
 				$scope.locationsArray = [];
 			}
 		}
@@ -49,7 +49,7 @@ var locationList = angular.module('locationList', ['ngMaterial', 'ngMessages', '
 
 		$scope.geocodeAddress = function(address, availableLocations) {
 			var deferred = $q.defer();
-			if(availableLocations != undefined) {
+			if(availableLocations !== undefined) {
 				deferred.resolve( availableLocations );
 			} else {
 				$scope.geocoder.geocode({'address': address}, function (results, status) {
@@ -75,7 +75,6 @@ var locationList = angular.module('locationList', ['ngMaterial', 'ngMessages', '
 				if (status === google.maps.GeocoderStatus.OK) {
 					deferred.resolve( results );
 				} else {
-					// console.log(status);
 					deferred.resolve([]);
 				}
 			});
@@ -98,7 +97,7 @@ var locationList = angular.module('locationList', ['ngMaterial', 'ngMessages', '
 		};
 
 		$scope.showCity = function(ind, zoom) {
-			if(zoom == undefined )
+			if(zoom === undefined )
 				zoom = ZOOM;
 			var coords = COORDISNATES;
 			if($scope.locationsArray.length > 0) {
